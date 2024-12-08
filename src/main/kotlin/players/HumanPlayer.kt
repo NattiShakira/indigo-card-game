@@ -28,8 +28,13 @@ class HumanPlayer : Player {
 
             try {
                 index = input.trim().toInt()
-                if (index in 1..hand.size) return hand.removeAt(index - 1)
+                if (index in 1..hand.size) {
+                    return hand.removeAt(index - 1)
+                } else {
+                    println("Invalid input!\n")
+                }
             } catch (_: NumberFormatException) {
+                println("Invalid input!\n")
             }
         }
     }

@@ -29,7 +29,6 @@ class Deck {
     }
 
     fun dealCardsToTable(table: MutableList<Card>): Unit {
-        println("Cards were dealt to the players; each player received 6 cards\n")
         repeat(4) {
             table.add(cards.removeAt(cards.size - 1))
         }

@@ -9,46 +9,43 @@ class ComputerPlayer : Player {
     override var numCardsWon = 0
 
     override fun playCard(table: MutableList<Card>): Card {
-        println(
-            "Cards in computer's hand: ${hand.joinToString(" ") { card -> card.strRepr() }}"
-        )
+        println("Cards in computer's hand: ${hand.joinToString(" ") { "[X]" }}")
 
-        val card: Card
-        if (hand.size == 1) {
-            card = hand[0]
-        } else if (table.isEmpty()) {
-            val listOfCardsWithSameSuit = findCardsWithSameSuit()
-            val listOfCardsWithSameRank = findCardsWithSameRank()
-            card = if (listOfCardsWithSameSuit.size > 1) {
-                listOfCardsWithSameSuit.random()
-            } else if (listOfCardsWithSameRank.size > 1) {
-                listOfCardsWithSameRank.random()
-            } else {
-                hand.random()
-            }
-        } else {
-            val lastCard = table.last()
-            val listOfCardWithSameSuitAsLast = findCardsWithSameSuitAsLast(lastCard)
-            val listOfCardWithSameRankAsLast = findCardsWithSameRankAsLast(lastCard)
-            card = if (listOfCardWithSameSuitAsLast.size > 1) {
-                listOfCardWithSameSuitAsLast.random()
-            } else if (listOfCardWithSameRankAsLast.size > 1) {
-                listOfCardWithSameRankAsLast.random()
-            } else if (listOfCardWithSameRankAsLast.size == 1 || listOfCardWithSameSuitAsLast.size == 1 ) {
-                listOfCardWithSameSuitAsLast.addAll(listOfCardWithSameRankAsLast)
-                listOfCardWithSameSuitAsLast.random()
-            }else {
+        val card: Card = when {
+            hand.size == 1 -> hand[0]
+            table.isEmpty() -> {
                 val listOfCardsWithSameSuit = findCardsWithSameSuit()
                 val listOfCardsWithSameRank = findCardsWithSameRank()
-                if (listOfCardsWithSameSuit.size > 1) {
-                    listOfCardsWithSameSuit.random()
-                } else if (listOfCardsWithSameRank.size > 1) {
-                    listOfCardsWithSameRank.random()
-                } else {
-                    hand.random()
+                when {
+                    listOfCardsWithSameSuit.size > 1 -> listOfCardsWithSameSuit.random()
+                    listOfCardsWithSameRank.size > 1 -> listOfCardsWithSameRank.random()
+                    else -> hand.random()
+                }
+            }
+            else -> {
+                val lastCard = table.last()
+                val listOfCardWithSameSuitAsLast = findCardsWithSameSuitAsLast(lastCard)
+                val listOfCardWithSameRankAsLast = findCardsWithSameRankAsLast(lastCard)
+
+                when {
+                    listOfCardWithSameSuitAsLast.size > 1 -> listOfCardWithSameSuitAsLast.random()
+                    listOfCardWithSameRankAsLast.size > 1 -> listOfCardWithSameRankAsLast.random()
+                    listOfCardWithSameSuitAsLast.size == 1 || listOfCardWithSameRankAsLast.size == 1 -> {
+                        listOfCardWithSameSuitAsLast.apply { addAll(listOfCardWithSameRankAsLast) }.random()
+                    }
+                    else -> {
+                        val listOfCardsWithSameSuit = findCardsWithSameSuit()
+                        val listOfCardsWithSameRank = findCardsWithSameRank()
+                        when {
+                            listOfCardsWithSameSuit.size > 1 -> listOfCardsWithSameSuit.random()
+                            listOfCardsWithSameRank.size > 1 -> listOfCardsWithSameRank.random()
+                            else -> hand.random()
+                        }
+                    }
                 }
             }
         }
+
         println("Computer plays ${card.strRepr()}")
         hand.remove(card)
         return card
