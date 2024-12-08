@@ -79,10 +79,9 @@ class Game {
             - Initially, 4 cards are put on the table from the deck, face up.
             - Then, players are given 6 cards each from the deck. Players cannot see the cards of each other.
             - Players take turns:
-              - if a player has in his hand a card that matches a rank or a suit of the last card on the table, he can toss it on the table and then take all the cards from the table and put them aside
+              - if a player has in his hand a card that matches a rank or a suit of the last card on the table, he can toss it on the table and then take all the cards from the table and put them aside into his pile of won cards
               - otherwise, the player put any card on the table and this card becomes the last card on the table
-            - If there are no cards on the table, four new cards are dealt on the table from the deck.
-            - If players don’t have cards in their hands, each player takes six new cards from the deck.
+            - If players don’t have cards in their hands, each player takes 6 new cards from the deck.
             - The game lasts as long as there are cards in the deck.
             - At the end of the game, the points are given for each special card that is in the cards that a player won (A, 10, J, Q, K gives 1 point each). 
             - Plus, a player with the most cards gets 3 additional points.
