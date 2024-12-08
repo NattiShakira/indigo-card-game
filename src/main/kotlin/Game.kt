@@ -58,12 +58,18 @@ class Game {
         // If after the last card is put on the table, no one wins the cards, they go to the player who started second
         if (table.isNotEmpty() && table.size != 52) {
             listOfPlayers[1].winCards(table, winningRanks)
-            println("${listOfPlayers[1].getString()} wins all the cards left on the table because he started playing second\n")
+            println("${listOfPlayers[1].getString()} wins all the cards left on the table because he started playing second!\n")
         }
 
         when {
-            humanPlayer.numCardsWon > computerPlayer.numCardsWon -> humanPlayer.pointsWon += 3
-            computerPlayer.numCardsWon > humanPlayer.numCardsWon -> computerPlayer.pointsWon += 3
+            humanPlayer.numCardsWon > computerPlayer.numCardsWon -> {
+                humanPlayer.pointsWon += 3
+                println("Player receives 3 additional points because he has the most cards in his pile of won cards!\n")
+            }
+            computerPlayer.numCardsWon > humanPlayer.numCardsWon -> {
+                computerPlayer.pointsWon += 3
+                println("Computer receives 3 additional points because he has the most cards in his pile of won cards!\n")
+            }
         }
 
         printStats(humanPlayer, computerPlayer)
@@ -84,7 +90,8 @@ class Game {
             - If players don’t have cards in their hands, each player takes 6 new cards from the deck.
             - The game lasts as long as there are cards in the deck.
             - At the end of the game, the points are given for each special card that is in the cards that a player won (A, 10, J, Q, K gives 1 point each). 
-            - Plus, a player with the most cards gets 3 additional points.
+            - If at the end of the game, there are cards left on the table, they are given to the player who started second (put in his pile of won cards). 
+            - Also, a player with the most cards gets 3 additional points.
             - A winner is a player with the biggest number of points.
         """.trimIndent())
         println()

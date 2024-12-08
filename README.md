@@ -17,7 +17,8 @@ he can toss it on the table and then take all the cards from the table and put t
 - If players don’t have cards in their hands, each player takes 6 new cards from the deck.
 - The game lasts as long as there are cards in the deck.
 - At the end of the game, the points are given for each special card that is in the cards that a player won (A, 10, J, Q, K gives 1 point each).
-- Plus, a player with the most cards gets 3 additional points.
+- If at the end of the game, there are cards left on the table, they are given to the player who started second (put in his pile of won cards).
+- Also, a player with the most cards gets 3 additional points.
 - A winner is a player with the biggest number of points.
 
 ### Setup and run instructions
